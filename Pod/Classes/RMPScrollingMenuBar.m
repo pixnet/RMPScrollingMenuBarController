@@ -405,7 +405,7 @@
     }
     
     _scrollView.contentOffset = CGPointMake(from + _scrollView.contentSize.width/_items.count*ratio, 0);
-    NSLog(@"scrollByRatio %0.2f, %0.2f", ratio, _scrollView.contentOffset.x);
+//    NSLog(@"scrollByRatio %0.2f, %0.2f", ratio, _scrollView.contentOffset.x);
 }
 
 - (void)setSelectedItem:(RMPScrollingMenuBarItem *)selectedItem
