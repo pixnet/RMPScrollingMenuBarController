@@ -20,6 +20,7 @@
 
 #import "RMPScrollingMenuBarController.h"
 #import "RMPScrollingMenuBarControllerTransition.h"
+#import "REFrostedViewController.h"
 
 @interface RMPScrollingMenuBarController () <RMPScrollingMenuBarDelegate>
 
@@ -76,6 +77,28 @@
         [self updateMenuBarWithViewControllers:_viewControllers animated:NO];
         [self setSelectedViewController:_viewControllers[0]];
     }
+    [self addNavigationLeftButton];
+}
+
+- (void)addNavigationLeftButton {
+    UIImage *image = [UIImage imageNamed:@"MenuIcon"];
+    UIButton *button =[UIButton buttonWithType:UIButtonTypeCustom];
+    [button setFrame:CGRectMake(self.view.frame.origin.x , self.view.frame.origin.y , image.size.width , image.size.height)];
+    [button setImage:image forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(menuSetting) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *customBtn=[[UIBarButtonItem alloc] initWithCustomView:button];
+    [self.navigationItem setLeftBarButtonItem:customBtn];
+}
+
+- (IBAction)menuSetting {
+    // Dismiss keyboard (optional)
+    //
+    [self.view endEditing:YES];
+    [self.frostedViewController.view endEditing:YES];
+    
+    // Present the view controller
+    //
+    [self.frostedViewController presentMenuViewController];
 }
 
 - (void)viewDidLoad {
